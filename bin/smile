@@ -2,4 +2,42 @@
 $LOAD_PATH.unshift File.expand_path("../lib", File.dirname(__FILE__))
 require 'smile'
 
-p Smile.foo
+src = " :-p 9-) [-: :\") :-O 1-) ;-) :-] "
+
+#src = ":-p 7-) 2-) :-o 
+#:-p 1-) 0-) 5-) :-o"
+
+tokens = Smile::Lexer.new(src).tokenize
+code = Smile::Parser.new(tokens).parse
+Smile::Evaluator.new(code).eval
+
+=begin
+ ":-p 6-) 5-) :-o"
+
+   ↓ Lexer#tokenize (字句解析)
+
+ [:push_right, 6, 5, :putc_right]
+
+   ↓ Parser#parse (構文解析)
+
+ [
+   [:push_right, 65], 
+   :putc_right]
+ ]
+
+   ↓ Evaluator#eval (評価)
+
+ 「dequeの右側に65を積む」
+ 「dequeの右側から値を取り出し、それをASCIIコードと見なして文字を出力する」
+
+   ↓ 実行結果
+
+ 「A」が出力される
+=end
+
+
+
+
+
+
+# :-p 9-) [-: :") :-O 1-) ;-) :-] 
