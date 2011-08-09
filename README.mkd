@@ -1,0 +1,113 @@
+The Smile Programming Language
+==============================
+
+Smile is an esoteric language based on deque (double-ended queue).
+
+Data model
+==========
+
+A Smile processor has one deque of (unlimited size of) integers.
+
+Syntax
+======
+
+Numeric literals
+----------------
+
+* -11 : (-1 (-1
+* -10 : (-1 (-0
+* ...
+*  -2 : (-2
+*  -1 : (-1
+*   0 : (-0 or 0-)
+*   1 : 1-)
+*   2 : 2-)
+* ...
+*   9 : 9-)
+*  10 : 1-) 0-)
+*  11 : 1-) 1-)
+
+Note: (-1 2-) is parse error.
+
+Arithmetic operations
+---------------------
+
+* (+: :+) add_left/add_right
+* (-: :-) sub_left/sub_right
+* (\*: :\*) mul_left/mul_right
+* (-/ /-) div_left/div_right
+* (-% %-) mod_left/mod_right
+
+* (-| |-) bitor_left/bitor_right
+* (-& &-) bitand_left/bitand_right
+* (^: :^) bitxor_left/bitxor_right
+
+* (-! !-) not_left/not_right
+
+comparison
+
+* <-: :-<  greater_left/greater_right
+* \>-: :->  less_left/less_right
+* <=: :=<  ge_left/ge_right
+* \>=: :=>  le_left/le_right
+* (=: :=)  equal_left/equal_right
+
+Deque operations
+----------------
+
+* p-: NUMBER  push NUMBER to the left side of deque
+* \:-p NUMBER  push NUMBER to the right side of deque
+* s-: :-s  swap_left/swap_right
+* (": :")  dup_left/dup_right
+* D-: :-D  discard_left/discard_right
+* o-8 8-o  rotate_left/rotate_right
+
+I/O
+---
+
+* o-: :-o  putc_left/putc_right
+* O-: :-O  putn_left/putn_right (capital o)
+* i-: :-i  getc_left/getc_right
+* I-: :-I  getn_left/getn_right (capital i)
+
+Comments
+--------
+
+* \:-x  single-line comment (to the end of the line)
+* x-:  single-line comment (to the beggining of the line)
+* \:-X ... X-: multi-line comment
+
+Control flow
+------------
+
+### if (left)
+
+* {-: (then) :-| (else) :-} pop a value from left.
+                  evaluate (then) if it is nonzero,
+                  evaluate (else) if it is zero.
+
+### if (right)
+
+* \:-{ (then) :-| (else) }-: pop a value from right.
+                  evaluate (then) if it is nonzero,
+                  evaluate (else) if it is zero.
+
+Note 1: :-| and (else) may be omitted.
+
+Note 2: |-: is the same as :-|.
+
+### while (left)
+
+* \[-: (body) :-] pop a value from left.
+                 if it is zero, break from loop.
+
+### while (right)
+
+* \:-\[ (body) ]-: pop a value from left.
+                 if it is zero, break from loop.
+
+### exit
+
+* B-) : Bye (terminates program)
+
+Note: (-B is the same as B-).
