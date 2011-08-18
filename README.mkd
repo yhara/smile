@@ -111,3 +111,53 @@ Note 2: |-: is the same as :-|.
 * B-) : Bye (terminates program)
 
 Note: (-B is the same as B-).
+
+Discussion
+==========
+
+Turing completeness
+-------------------
+
+If Brainf*ck can be implemented in Smile, Smile is Turing-complete.
+
+Brainf*ck has these instructions:
+
+* + -> 
+* - : dec
+* . : out
+* , : in
+* [ ] : loop
+* < : prev
+* > : next
+
+case in
+when +
+  :-p 1-) :+)
+when -
+  :-p 1-) :-)
+when .
+  :-o
+when ,
+  :-i
+when <
+when >
+when [
+when ]
+end
+
+  | 0 3 2 5   
+      ^
+
+  2 5 (|) 0 3
+
+  | 0 3 2 5   
+        ^
+
+    5 (|) 0 3 2
+
+  | 0 3 2 5 0
+            ^
+
+      (|) 0 3 2 5 0
+
+

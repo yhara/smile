@@ -19,8 +19,10 @@ module Smile
     ";-)" => :sub_right,
   }
 
-  def self.foo
-    :foo
+  def self.run(src)
+    tokens = Lexer.new(src).tokenize
+    code = Parser.new(tokens).parse
+    Evaluator.new(code).eval
   end
 end
 
