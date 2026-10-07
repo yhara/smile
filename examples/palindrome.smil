@@ -1,0 +1,39 @@
+:-x Palindrome checker in Smile
+:-x
+:-x This is the example where a deque genuinely beats a plain stack:
+:-x we repeatedly compare the LEFT-most and the RIGHT-most character
+:-x and throw both away, working our way inward from both ends.
+:-x A stack can only reach one end, so it cannot do this directly.
+:-x
+:-x Trick: `o-8` (rotate_left) moves the left-most value to the right
+:-x end, so the two right-most values become (old-right, old-left).
+:-x Then `:=)` (equal_right) compares exactly that outer pair.
+
+:-x ---- push the word "ABBA" onto the deque, left to right ----
+:-p 6-) 5-)   :-x A (65)
+:-p 6-) 6-)   :-x B (66)
+:-p 6-) 6-)   :-x B (66)
+:-p 6-) 5-)   :-x A (65)
+
+:-x ---- fold inward: compare the outer pair, discard both, repeat ----
+:-x The loop peeks the left end; letters are nonzero, so it runs
+:-x until the deque is empty (works for even-length words).
+[-:
+  o-8                 :-x rotate left-most char to the right end
+  :=)                 :-x compare the two right-most (orig right vs orig left)
+  :-{                 :-x pop that flag from the right:
+    :-x match -> do nothing, keep folding inward
+  :-|
+    :-x mismatch -> print "No\n" and stop
+    :-p 7-) 8-) :-o   :-x N
+    :-p 1-) 1-) 1-) :-o   :-x o
+    :-p 1-) 0-) :-o   :-x newline
+    B-)
+  }-:
+:-]
+
+:-x ---- the deque drained with no mismatch: it is a palindrome ----
+:-p 8-) 9-) :-o       :-x Y
+:-p 1-) 0-) 1-) :-o   :-x e
+:-p 1-) 1-) 5-) :-o   :-x s
+:-p 1-) 0-) :-o       :-x newline
