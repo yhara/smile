@@ -1,0 +1,20 @@
+:-x Hello, world! in Smile
+:-x push every character code to the right, in reading order...
+
+:-p 7-) 2-)     :-x H
+:-p 1-) 0-) 1-) :-x e
+:-p 1-) 0-) 8-) :-x l
+:-p 1-) 0-) 8-) :-x l
+:-p 1-) 1-) 1-) :-x o
+:-p 4-) 4-)     :-x ,
+:-p 3-) 2-)     :-x (space)
+:-p 1-) 1-) 9-) :-x w
+:-p 1-) 1-) 1-) :-x o
+:-p 1-) 1-) 4-) :-x r
+:-p 1-) 0-) 8-) :-x l
+:-p 1-) 0-) 0-) :-x d
+:-p 3-) 3-)     :-x !
+:-p 1-) 0-)     :-x newline
+
+:-x ...then print from the left until the deque is empty.
+:-[ o-: ]-:

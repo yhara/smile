@@ -3,6 +3,28 @@ The Smile Programming Language
 
 Smile is an esoteric language based on deque (double-ended queue).
 
+# Example
+
+Hello World
+
+```
+:-p 7-) 2-)     
+:-p 1-) 0-) 1-) 
+:-p 1-) 0-) 8-) 
+:-p 1-) 0-) 8-) 
+:-p 1-) 1-) 1-) 
+:-p 4-) 4-)     
+:-p 3-) 2-)     
+:-p 1-) 1-) 9-) 
+:-p 1-) 1-) 1-) 
+:-p 1-) 1-) 4-) 
+:-p 1-) 0-) 8-) 
+:-p 1-) 0-) 0-) 
+:-p 3-) 3-)     
+:-p 1-) 0-)     
+:-[ o-: ]-:
+```
+
 Data model
 ==========
 
@@ -98,12 +120,12 @@ Note 2: `|-:` is the same as `:-|`.
 
 ### while (left)
 
-* `[-:` (body) `:-]` pop a value from left.
+* `[-:` (body) `:-]` peek a value from left (without removing it).
                  if it is zero, break from loop.
 
 ### while (right)
 
-* `:-[` (body) `]-:` pop a value from left.
+* `:-[` (body) `]-:` peek a value from right (without removing it).
                  if it is zero, break from loop.
 
 ### exit
@@ -112,52 +134,10 @@ Note 2: `|-:` is the same as `:-|`.
 
 Note: `(-B` is the same as `B-)`.
 
-Discussion
-==========
+# Possible extension
 
-Turing completeness
--------------------
+- `;` instead of `:` (eg. `;-)`)
 
-If Brainf*ck can be implemented in Smile, Smile is Turing-complete.
+# License
 
-Brainf*ck has these instructions:
-
-* `+` ->
-* `-` : dec
-* `.` : out
-* `,` : in
-* `[` `]` : loop
-* `<` : prev
-* `>` : next
-
-case in
-when +
-  `:-p 1-) :+)`
-when -
-  `:-p 1-) :-)`
-when .
-  `:-o`
-when ,
-  `:-i`
-when <
-when >
-when [
-when ]
-end
-
-  | 0 3 2 5
-      ^
-
-  2 5 (|) 0 3
-
-  | 0 3 2 5
-        ^
-
-    5 (|) 0 3 2
-
-  | 0 3 2 5 0
-            ^
-
-      (|) 0 3 2 5 0
-
-
+MIT

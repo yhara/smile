@@ -2,11 +2,13 @@
 $LOAD_PATH.unshift File.expand_path("../lib", File.dirname(__FILE__))
 require 'smile'
 
-src = %{
-:-p 1-) 0-)
-[-:
-  :-p 1-) ;-) :") :-O :-p 1-) 0-) :-o
-:-]
-}
+if ARGV.empty?
+  abort "Usage: #{File.basename($0)} FILE.smil"
+end
 
-Smile.run(src)
+path = ARGV[0]
+unless File.file?(path)
+  abort "#{File.basename($0)}: no such file: #{path}"
+end
+
+Smile.run(File.read(path))

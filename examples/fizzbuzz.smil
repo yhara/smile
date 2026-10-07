@@ -1,0 +1,28 @@
+:-x FizzBuzz in Smile (1..100)
+:-x The left end holds a counter r that counts down from 100 to 1.
+:-x The number for this round is n = 101 - r, so n runs 1, 2, ..., 100.
+:-x All scratch work happens on the right end; r is left untouched.
+
+p-: 1-) 0-) 0-)
+
+[-:
+  :-x ---- Fizz: print "Fizz" when n % 3 == 0 ----
+  :-x recompute n on the right, then n % 3
+  (": :-p 1-) 0-) 1-) :-s :-) :-p 3-) %-)
+  :-{ :-| :-p 7-) 0-) :-o :-p 1-) 0-) 5-) :-o :-p 1-) 2-) 2-) :-o :-p 1-) 2-) 2-) :-o }-:
+
+  :-x ---- Buzz: print "Buzz" when n % 5 == 0 ----
+  (": :-p 1-) 0-) 1-) :-s :-) :-p 5-) %-)
+  :-{ :-| :-p 6-) 6-) :-o :-p 1-) 1-) 7-) :-o :-p 1-) 2-) 2-) :-o :-p 1-) 2-) 2-) :-o }-:
+
+  :-x ---- Number: print n when (n % 3) * (n % 5) is nonzero ----
+  :-x keep one copy of n to print; use two more to build the flag
+  (": :-p 1-) 0-) 1-) :-s :-) :") :") :-p 5-) %-) :-s :-p 3-) %-) :*)
+  :-{ :-O :-| :-D }-:
+
+  :-x ---- end the line ----
+  :-p 1-) 0-) :-o
+
+  :-x ---- r = r - 1 ----
+  :-p 1-) :-)
+:-]
